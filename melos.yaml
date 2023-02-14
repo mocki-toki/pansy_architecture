@@ -1,0 +1,15 @@
+name: pansy_architecture
+
+packages:
+  - packages/**
+  - .
+
+scripts:
+  pub:get: "dart pub run melos exec dart pub get"
+  pub:major: 'dart pub run melos exec "dart pub upgrade --major-versions"'
+  test: 'dart pub run melos exec --dir-exists="test" "dart test --dart-define=environment=testing" '
+  integration_test: 'dart pub run melos exec --dir-exists="integration_test" "dart test integration_test --dart-define=environment=testing" '
+  coverage: 'dart pub run melos exec --dir-exists="test" "dart test --coverage"'
+  generate: 'dart pub run melos exec --depends-on build_runner "dart run build_runner build --delete-conflicting-outputs" '
+  clean: 'dart pub run melos exec --depends-on dart dart clean && find -E . -regex ".*((g|freezed)\.dart|pubspec\.lock|\.DS_Store)" -type f -delete'
+  fresh: "dart pub run melos run clean && dart pub get && dart pub run melos run pub:get && dart pub run melos run generate"

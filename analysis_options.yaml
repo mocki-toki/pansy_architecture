@@ -1,0 +1,100 @@
+include: package:lint/strict.yaml
+
+linter:
+  rules:
+    sort_pub_dependencies: false
+    prefer_single_quotes: true
+    unawaited_futures: true
+
+analyzer:
+  exclude:
+    - "**/**.g.dart"
+    - "**/**.freezed.dart"
+  plugins:
+    - dart_code_metrics
+
+dart_code_metrics:
+  metrics:
+    cyclomatic-complexity: 20
+    halstead-volume: 150
+    lines-of-code: 100
+    maintainability-index: 50
+    maximum-nesting-level: 5
+    number-of-methods: 10
+    number-of-parameters: 5
+    source-lines-of-code: 50
+    weight-of-class: 0.33
+
+  metrics-exclude:
+    - test/**
+
+  rules:
+    - avoid-cascade-after-if-null
+    - avoid-double-slash-imports
+    - avoid-duplicate-exports
+    # глючит
+    # - avoid-dynamic
+    - avoid-global-state
+    - avoid-missing-enum-constant-in-map
+    - avoid-non-ascii-symbols
+    - avoid-redundant-async
+    - avoid-throw-in-catch-block
+    - avoid-top-level-members-in-tests
+    - avoid-unnecessary-conditionals
+    - avoid-unnecessary-type-assertions
+    - avoid-unnecessary-type-casts
+    - avoid-unrelated-type-assertions
+    - avoid-unused-parameters
+    - binary-expression-operand-order
+    - double-literal-format
+    - list-all-equatable-fields
+    - member-ordering:
+        order:
+          - constructors
+          - public-fields
+          - private-fields
+          - close-method
+          - dispose-method
+        widgets-order:
+          - constructor
+          - init-state-method
+          - did-change-dependencies-method
+          - did-update-widget-method
+          - dispose-method
+          - build-method
+    - no-boolean-literal-compare
+    - no-equal-then-else
+    - no-object-declaration
+    - prefer-async-await
+    - prefer-commenting-analyzer-ignores
+    - prefer-conditional-expressions
+    - prefer-enums-by-name
+    - prefer-first
+    - prefer-immediate-return
+    - prefer-iterable-of
+    - prefer-last
+    - prefer-match-file-name:
+        exclude:
+          - test/**
+    - prefer-moving-to-variable:
+        allowed-duplicated-chains: 3
+    - prefer-trailing-comma
+    - tag-name:
+        var-names: [_kTag]
+        strip-prefix: _
+        strip-postfix: State
+    - always-remove-listener
+    - avoid-border-all
+    - avoid-unnecessary-setstate
+    - avoid-expanded-as-spacer
+    - avoid-wrapping-in-padding
+    - check-for-equals-in-render-object-setters
+    - consistent-update-render-object
+    - prefer-const-border-radius
+    - prefer-correct-edge-insets-constructor
+    - prefer-extracting-callbacks
+    - prefer-using-list-view
+
+  anti-patterns:
+    - long-method
+    - long-parameter-list

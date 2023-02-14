@@ -1,0 +1,168 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "pub get",
+      "command": "flutter pub get && flutter pub run melos run pub:get",
+      "type": "shell",
+      "args": [],
+      "presentation": {
+        "reveal": "always"
+      },
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Pub upgrade major versions",
+      "command": "flutter pub run melos run pub:major",
+      "type": "shell",
+      "args": [],
+      "presentation": {
+        "reveal": "always"
+      },
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Generate code",
+      "command": "flutter pub run melos run generate",
+      "type": "shell",
+      "args": [],
+      "presentation": {
+        "reveal": "always"
+      },
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Clean code",
+      "command": "flutter pub run melos run clean",
+      "type": "shell",
+      "args": [],
+      "presentation": {
+        "reveal": "always"
+      },
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Fresh project (clean, pub:get, firebase:init, generate)",
+      "command": "flutter pub run melos run fresh",
+      "type": "shell",
+      "args": [],
+      "presentation": {
+        "reveal": "always"
+      },
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Check depedencies",
+      "command": "flutter pub run melos run dependency:validator",
+      "type": "shell",
+      "args": [],
+      "presentation": {
+        "reveal": "always"
+      },
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run analyzer",
+      "command": "flutter analyze . --no-pub",
+      "type": "shell",
+      "args": [],
+      "presentation": {
+        "reveal": "always"
+      },
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run tests",
+      "command": "flutter pub run melos run test",
+      "type": "shell",
+      "args": [],
+      "presentation": {
+        "reveal": "always"
+      },
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Pansy Archeticture: create model",
+      "command": "flutter pub run melos run pansy:arch:model:create \"--module_name ${input:moduleName} --model_name ${input:modelName}\"",
+
+      "type": "shell",
+      "args": [],
+      "presentation": {
+        "reveal": "always"
+      },
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Pansy Archeticture: create module",
+      "command": "flutter pub run melos run pansy:arch:module:create \"--module_name ${input:moduleName}\"",
+
+      "type": "shell",
+      "args": [],
+      "presentation": {
+        "reveal": "always"
+      },
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Pansy Archeticture: create package",
+      "command": "flutter pub run melos run pansy:arch:package:create \"--package_name ${input:packageName}\"",
+
+      "type": "shell",
+      "args": [],
+      "presentation": {
+        "reveal": "always"
+      },
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Pansy Archeticture: create service",
+      "command": "flutter pub run melos run pansy:arch:service:create \"--module_name ${input:moduleName} --service_name ${input:serviceName}\"",
+
+      "type": "shell",
+      "args": [],
+      "presentation": {
+        "reveal": "always"
+      },
+      "group": "build",
+      "problemMatcher": []
+    }
+  ],
+
+  "inputs": [
+    {
+      "id": "moduleName",
+      "description": "Module name",
+      "default": "default_name",
+      "type": "promptString"
+    },
+    {
+      "id": "modelName",
+      "description": "Model name",
+      "default": "default_name",
+      "type": "promptString"
+    },
+    {
+      "id": "packageName",
+      "description": "Package name",
+      "default": "default_name",
+      "type": "promptString"
+    },
+    {
+      "id": "serviceName",
+      "description": "Service name",
+      "default": "default_name_service",
+      "type": "promptString"
+    }
+  ]
+}

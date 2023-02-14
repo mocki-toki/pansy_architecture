@@ -1,0 +1,20 @@
+{
+  "cl": {
+    "scope": "dart",
+    "prefix": "cl",
+    "description": "Class (with constructor)",
+    "body": ["class ${1:MyClass} {", "  const ${1:MyClass}();", "", "", "}"]
+  },
+  "pa": {
+    "scope": "dart",
+    "prefix": "part",
+    "description": "Part of generated file",
+    "body": "part '$TM_FILENAME_BASE.g.dart';"
+  },
+  "im": {
+    "scope": "dart",
+    "prefix": "im",
+    "description": "Import package",
+    "body": "import 'package${0}';"
+  }
+}
