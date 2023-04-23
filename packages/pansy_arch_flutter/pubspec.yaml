@@ -14,3 +14,7 @@ dependencies:
   flutter:
     sdk: flutter
   dino_flutter: ^1.0.0-pre.0
+
+dev_dependencies:
+  build_runner: ^2.3.3
+  dino_generator: ^1.0.0-pre.4

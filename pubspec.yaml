@@ -7,4 +7,4 @@ environment:
 dev_dependencies:
   dart_code_metrics: ^5.5.1
   lint: ^2.0.1
-  melos: ^2.6.0
+  melos: ^3.0.1

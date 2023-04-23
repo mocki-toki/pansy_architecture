@@ -6,8 +6,8 @@ extension RouterContextExtensions on BuildContext {
     return getRequired<GoRouter>();
   }
 
-  void open(ActivityRoute route) {
-    return router.push(
+  Future<T?> open<T>(ActivityRoute route) {
+    return router.push<T>(
       _getRouteLocation(route.data),
       extra: route.data.extra,
     );

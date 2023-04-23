@@ -2,8 +2,11 @@ import 'dart:async';
 
 import 'package:pansy_arch_shelf_router/pansy_arch_shelf_router.dart';
 
+part 'router_provider.g.dart';
+
 typedef RouteFactory = List<ShelfRoute> Function(ServiceProvider provider);
 
+@Service(ServiceLifetime.singleton)
 class RouterProvider implements Initializable {
   RouterProvider(this._serviceProvider);
 

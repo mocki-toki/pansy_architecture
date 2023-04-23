@@ -5,7 +5,7 @@ class PansyArchGoRouterModule extends Module {
   @override
   void configureServices(ServiceCollection services) {
     services.addModule(PansyArchFlutterModule());
-    services.addSingleton<RouterProvider>();
+    services.addRouterProvider();
     services.addSingletonFactory((provider) => provider.getRequired<RouterProvider>().router);
   }
 }

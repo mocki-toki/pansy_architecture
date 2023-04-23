@@ -12,3 +12,7 @@ dependencies:
       url: https://github.com/mocki-toki/pansy_architecture.git
       path: packages/pansy_arch_flutter
   go_router: ^6.0.0
+
+dev_dependencies:
+  build_runner: ^2.3.3
+  dino_generator: ^1.0.0-pre.4
