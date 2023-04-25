@@ -4,7 +4,7 @@ import 'package:pansy_arch_shelf_router/pansy_arch_shelf_router.dart';
 
 part 'router_provider.g.dart';
 
-typedef RouteFactory = List<ShelfRoute> Function(ServiceProvider provider);
+typedef RouteFactory = List<ShelfRoute>;
 
 @Service(ServiceLifetime.singleton)
 class RouterProvider implements Initializable {
@@ -23,10 +23,7 @@ class RouterProvider implements Initializable {
     final ShelfRouteNotFound? routeNotFound = _serviceProvider.get<ShelfRouteNotFound>();
     _router = Router(notFoundHandler: routeNotFound?.handler ?? (_) => Router.routeNotFound);
 
-    final routes = _serviceProvider
-        .getMany<RouteFactory>()
-        .expand((element) => element(_serviceProvider))
-        .toList();
+    final routes = _serviceProvider.getMany<RouteFactory>().expand((element) => element).toList();
 
     return Future.forEach(
       routes,

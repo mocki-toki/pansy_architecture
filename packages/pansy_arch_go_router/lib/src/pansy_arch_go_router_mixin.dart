@@ -9,53 +9,44 @@ typedef RouteBuilder<T> = Widget Function(BuildContext context, GoRouterState st
 typedef PageBuilder<T> = Page Function(BuildContext context, GoRouterState state, T route);
 typedef RedirectBuilder<T> = FutureOr<String?> Function(BuildContext context, GoRouterState state);
 
-mixin PansyArchGoRouterMixin on Module {
-  @override
-  void onServiceConfiguration(ServiceCollection services) {
-    super.onServiceConfiguration(services);
-
-    services.addInstance<GoRouteFactory>(buildRoutes);
+extension PansyArchGoRouterMixin on ServiceCollection {
+  void addRoutes(GoRouteFactory routes) {
+    addInstance<GoRouteFactory>(routes);
   }
+}
 
-  // mixin
-  // ignore: avoid-unused-parameters
-  List<GoRoute> buildRoutes(ServiceProvider provider) {
-    return const [];
-  }
+GoRoute route<T>({
+  required String path,
+  required RouteFactory<T> routeFactory,
+  RouteBuilder<T>? builder,
+  PageBuilder<T>? pageBuilder,
+  GoRouterRedirect? redirect,
+}) {
+  return GoRoute(
+    path: path,
+    builder: builder != null
+        ? (context, state) {
+            final routeData = RouteData(
+              path: path,
+              parameters: state.params,
+              queryParameters: state.queryParams,
+              extra: state.extra as Map<String, dynamic>? ?? {},
+            );
 
-  GoRoute route<T>({
-    required String path,
-    required RouteFactory<T> routeFactory,
-    RouteBuilder<T>? builder,
-    PageBuilder<T>? pageBuilder,
-    GoRouterRedirect? redirect,
-  }) {
-    return GoRoute(
-      path: path,
-      builder: builder != null
-          ? (context, state) {
-              final routeData = RouteData(
-                path: path,
-                parameters: state.params,
-                queryParameters: state.queryParams,
-                extra: state.extra as Map<String, dynamic>? ?? {},
-              );
+            return builder(context, state, routeFactory(routeData));
+          }
+        : null,
+    pageBuilder: pageBuilder != null
+        ? (context, state) {
+            final routeData = RouteData(
+              path: path,
+              parameters: state.params,
+              queryParameters: state.queryParams,
+            );
 
-              return builder(context, state, routeFactory(routeData));
-            }
-          : null,
-      pageBuilder: pageBuilder != null
-          ? (context, state) {
-              final routeData = RouteData(
-                path: path,
-                parameters: state.params,
-                queryParameters: state.queryParams,
-              );
-
-              return pageBuilder(context, state, routeFactory(routeData));
-            }
-          : null,
-      redirect: redirect,
-    );
-  }
+            return pageBuilder(context, state, routeFactory(routeData));
+          }
+        : null,
+    redirect: redirect,
+  );
 }
