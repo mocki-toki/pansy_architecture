@@ -66,7 +66,6 @@ dart_code_metrics:
     - no-equal-then-else
     - no-object-declaration
     - prefer-async-await
-    - prefer-commenting-analyzer-ignores
     - prefer-conditional-expressions
     - prefer-enums-by-name
     - prefer-first

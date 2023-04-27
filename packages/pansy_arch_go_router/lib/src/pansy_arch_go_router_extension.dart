@@ -15,15 +15,18 @@ extension PansyArchGoRouterExtension on ServiceCollection {
   }
 }
 
+// ignore: long-parameter-list
 GoRoute route<T>({
   required String path,
   required RouteFactory<T> routeFactory,
   RouteBuilder<T>? builder,
   PageBuilder<T>? pageBuilder,
   GoRouterRedirect? redirect,
+  GlobalKey<NavigatorState>? parentNavigatorKey,
 }) {
   return GoRoute(
     path: path,
+    parentNavigatorKey: parentNavigatorKey,
     builder: builder != null
         ? (context, state) {
             final routeData = RouteData(

@@ -1,3 +1,4 @@
+export 'src/infrastructure/router_provider.dart';
 export 'src/presentation/navigator/activity_route.dart';
 export 'src/presentation/navigator/route_data.dart';
 export 'src/presentation/navigator/router_context_extensions.dart';
