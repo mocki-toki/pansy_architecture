@@ -2,7 +2,7 @@ import 'package:pansy_arch_go_router/pansy_arch_go_router.dart';
 
 part 'router_provider.g.dart';
 
-typedef GoRouteFactory = List<GoRoute> Function(ServiceProvider provider);
+typedef GoRouteFactory = List<RouteBase> Function(ServiceProvider provider);
 
 @Service(ServiceLifetime.singleton)
 class RouterProvider {
