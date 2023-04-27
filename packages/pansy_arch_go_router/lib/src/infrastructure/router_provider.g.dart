@@ -18,5 +18,9 @@ extension RouterProviderFactory on ServiceCollection {
       ),
       true,
     );
+
+    if (registerAliases) {
+      addAlias<Initializable, RouterProvider>(true);
+    }
   }
 }
