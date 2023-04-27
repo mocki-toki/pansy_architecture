@@ -9,7 +9,7 @@ typedef RouteBuilder<T> = Widget Function(BuildContext context, GoRouterState st
 typedef PageBuilder<T> = Page Function(BuildContext context, GoRouterState state, T route);
 typedef RedirectBuilder<T> = FutureOr<String?> Function(BuildContext context, GoRouterState state);
 
-extension PansyArchGoRouterMixin on ServiceCollection {
+extension PansyArchGoRouterExtension on ServiceCollection {
   void addRoutes(GoRouteFactory routes) {
     addInstance<GoRouteFactory>(routes);
   }
