@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:pansy_arch_go_router/pansy_arch_go_router.dart';
-import 'infrastructure/router_provider.dart';
 
 typedef RouteFactory<T> = T Function(RouteData);
 typedef RouteBuilder<T> = Widget Function(BuildContext context, GoRouterState state, T route);
