@@ -24,7 +24,7 @@ GoRoute route<T>({
   required RouteFactory<T> routeFactory,
   RouteWidgetBuilder<T>? builder,
   RoutePageBuilder<T>? pageBuilder,
-  RouteRedirectBuilder<T>? redirect,
+  RouteRedirectBuilder<T>? redirectBuilder,
   NavigatorKey? parentNavigatorKey,
 }) {
   return GoRoute(
@@ -48,9 +48,9 @@ GoRoute route<T>({
             );
           }
         : null,
-    redirect: redirect != null
+    redirect: redirectBuilder != null
         ? (context, state) {
-            return redirect(
+            return redirectBuilder(
               context,
               state,
               routeFactory(_fromStateToRouteData(state)),
