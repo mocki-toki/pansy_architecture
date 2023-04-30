@@ -1,4 +1,0 @@
-# melos_managed_dependency_overrides: pansy_arch
-dependency_overrides:
-  pansy_arch:
-    path: ../pansy_arch

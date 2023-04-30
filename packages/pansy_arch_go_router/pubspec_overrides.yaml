@@ -1,6 +1,0 @@
-# melos_managed_dependency_overrides: pansy_arch,pansy_arch_flutter
-dependency_overrides:
-  pansy_arch:
-    path: ../pansy_arch
-  pansy_arch_flutter:
-    path: ../pansy_arch_flutter

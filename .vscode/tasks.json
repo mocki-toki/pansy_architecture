@@ -3,7 +3,7 @@
   "tasks": [
     {
       "label": "pub get",
-      "command": "flutter pub get && flutter pub run melos bootstrap",
+      "command": "flutter pub get && flutter pub run melos run pub:get",
       "type": "shell",
       "args": [],
       "presentation": {
@@ -46,7 +46,7 @@
       "problemMatcher": []
     },
     {
-      "label": "Fresh project (clean, bootstrap, generate)",
+      "label": "Fresh project (clean, pub:get, firebase:init, generate)",
       "command": "flutter pub run melos run fresh",
       "type": "shell",
       "args": [],
