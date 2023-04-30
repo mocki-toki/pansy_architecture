@@ -4,4 +4,6 @@ abstract class ActivityRoute {
   const ActivityRoute();
 
   RouteData get data;
+
+  RouteRedirectBuilder? get redirectBuilder;
 }
