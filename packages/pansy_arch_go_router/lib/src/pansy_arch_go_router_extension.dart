@@ -14,7 +14,6 @@ extension PansyArchGoRouterExtension on ServiceCollection {
   }
 }
 
-// ignore: long-parameter-list
 GoRoute route<T>({
   required String path,
   required RouteFactory<T> routeFactory,
