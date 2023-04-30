@@ -35,7 +35,7 @@ GoRoute route<T>({
             return builder(
               context,
               state,
-              routeFactory(_fromStateToRouteData(state)),
+              routeFactory(state.toRouteData()),
             );
           }
         : null,
@@ -44,7 +44,7 @@ GoRoute route<T>({
             return pageBuilder(
               context,
               state,
-              routeFactory(_fromStateToRouteData(state)),
+              routeFactory(state.toRouteData()),
             );
           }
         : null,
@@ -53,18 +53,20 @@ GoRoute route<T>({
             return redirectBuilder(
               context,
               state,
-              routeFactory(_fromStateToRouteData(state)),
+              routeFactory(state.toRouteData()),
             );
           }
         : null,
   );
 }
 
-RouteData _fromStateToRouteData(GoRouterState state) {
-  return RouteData(
-    path: state.location,
-    parameters: state.pathParameters,
-    queryParameters: state.queryParameters,
-    extra: state.extra as Map<String, dynamic>? ?? {},
-  );
+extension _FromStateToRouteData on GoRouterState {
+  RouteData toRouteData() {
+    return RouteData(
+      path: location,
+      parameters: pathParameters,
+      queryParameters: queryParameters,
+      extra: extra as Map<String, dynamic>? ?? {},
+    );
+  }
 }
