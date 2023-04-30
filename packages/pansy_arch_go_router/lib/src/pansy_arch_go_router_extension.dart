@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:pansy_arch_go_router/pansy_arch_go_router.dart';
 
 typedef RouteFactory<T> = T Function(RouteData);
-typedef RouteBuilder<T> = Widget Function(BuildContext context, GoRouterState state, T route);
-typedef PageBuilder<T> = Page Function(BuildContext context, GoRouterState state, T route);
-typedef RedirectBuilder<T> = FutureOr<String?> Function(BuildContext context, GoRouterState state);
+typedef RouteWidgetBuilder<T> = Widget Function(BuildContext context, GoRouterState state, T route);
+typedef RoutePageBuilder<T> = Page Function(BuildContext context, GoRouterState state, T route);
+typedef RouteRedirectBuilder<T> = FutureOr<String?> Function(
+  BuildContext context,
+  GoRouterState state,
+  T route,
+);
+typedef NavigatorKey = GlobalKey<NavigatorState>;
 
 extension PansyArchGoRouterExtension on ServiceCollection {
   void addRoutes(GoRouteFactory routes) {
@@ -17,37 +22,49 @@ extension PansyArchGoRouterExtension on ServiceCollection {
 GoRoute route<T>({
   required String path,
   required RouteFactory<T> routeFactory,
-  RouteBuilder<T>? builder,
-  PageBuilder<T>? pageBuilder,
-  GoRouterRedirect? redirect,
-  GlobalKey<NavigatorState>? parentNavigatorKey,
+  RouteWidgetBuilder<T>? builder,
+  RoutePageBuilder<T>? pageBuilder,
+  RouteRedirectBuilder<T>? redirect,
+  NavigatorKey? parentNavigatorKey,
 }) {
   return GoRoute(
     path: path,
     parentNavigatorKey: parentNavigatorKey,
     builder: builder != null
         ? (context, state) {
-            final routeData = RouteData(
-              path: path,
-              parameters: state.params,
-              queryParameters: state.queryParams,
-              extra: state.extra as Map<String, dynamic>? ?? {},
+            return builder(
+              context,
+              state,
+              routeFactory(_fromStateToRouteData(state)),
             );
-
-            return builder(context, state, routeFactory(routeData));
           }
         : null,
     pageBuilder: pageBuilder != null
         ? (context, state) {
-            final routeData = RouteData(
-              path: path,
-              parameters: state.params,
-              queryParameters: state.queryParams,
+            return pageBuilder(
+              context,
+              state,
+              routeFactory(_fromStateToRouteData(state)),
             );
-
-            return pageBuilder(context, state, routeFactory(routeData));
           }
         : null,
-    redirect: redirect,
+    redirect: redirect != null
+        ? (context, state) {
+            return redirect(
+              context,
+              state,
+              routeFactory(_fromStateToRouteData(state)),
+            );
+          }
+        : null,
+  );
+}
+
+RouteData _fromStateToRouteData(GoRouterState state) {
+  return RouteData(
+    path: state.location,
+    parameters: state.pathParameters,
+    queryParameters: state.queryParameters,
+    extra: state.extra as Map<String, dynamic>? ?? {},
   );
 }
