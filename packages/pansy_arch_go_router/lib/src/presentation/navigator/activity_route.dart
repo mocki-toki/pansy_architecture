@@ -1,4 +1,4 @@
-import 'package:pansy_arch_go_router/src/presentation/navigator/route_data.dart';
+import 'package:pansy_arch_go_router/pansy_arch_go_router.dart';
 
 abstract class ActivityRoute {
   const ActivityRoute();
