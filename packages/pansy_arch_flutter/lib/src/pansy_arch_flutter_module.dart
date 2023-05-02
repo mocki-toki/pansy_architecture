@@ -1,9 +1,10 @@
 import 'package:pansy_arch_flutter/pansy_arch_flutter.dart';
 
-extension PansyArchFlutterModule on ServiceCollection {
-  void addPansyArchFlutterModule() {
-    addScaffoldMessengerProvider();
-    addSingletonFactory(
+class PansyArchFlutterModule extends Module {
+  @override
+  void configureServices(ServiceCollection services) {
+    services.addScaffoldMessengerProvider();
+    services.addSingletonFactory(
       (provider) => provider.getRequired<ScaffoldMessengerProvider>().state,
     );
   }
