@@ -15,6 +15,13 @@ extension RouterExtensions on GoRouter {
     );
   }
 
+  void pushReplacementRoute(ActivityRoute route) {
+    return pushReplacement(
+      _getRouteLocation(route.data),
+      extra: route.data.extra,
+    );
+  }
+
   void goRoute(ActivityRoute route) {
     return go(
       _getRouteLocation(route.data),
