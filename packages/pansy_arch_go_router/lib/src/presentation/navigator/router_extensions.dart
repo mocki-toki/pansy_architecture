@@ -1,20 +1,22 @@
-import 'package:flutter/material.dart';
 import 'package:pansy_arch_go_router/pansy_arch_go_router.dart';
 
-extension RouterContextExtensions on BuildContext {
-  GoRouter get router {
-    return getRequired<GoRouter>();
-  }
-
-  Future<T?> open<T>(ActivityRoute route) {
-    return router.push<T>(
+extension RouterExtensions on GoRouter {
+  Future<T?> pushRoute<T>(ActivityRoute route) {
+    return push<T>(
       _getRouteLocation(route.data),
       extra: route.data.extra,
     );
   }
 
-  void openAndReplace(ActivityRoute route) {
-    return router.replace(
+  void replaceRoute(ActivityRoute route) {
+    return replace(
+      _getRouteLocation(route.data),
+      extra: route.data.extra,
+    );
+  }
+
+  void goRoute(ActivityRoute route) {
+    return go(
       _getRouteLocation(route.data),
       extra: route.data.extra,
     );
